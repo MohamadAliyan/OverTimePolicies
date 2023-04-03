@@ -9,7 +9,7 @@ namespace OvertimePolicies.Service.Interfaces
 {
     public interface IEmployeeService : IService<Employee, EmployeeServiceModel>
     {
-         List<EmployeeServiceModel> GetRange(string dateFrom, string dateTo);
+        List<EmployeeServiceModel> GetRange(string name, string family, string dateFrom, string dateTo);
 
 
     }

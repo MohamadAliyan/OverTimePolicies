@@ -9,15 +9,15 @@ namespace OvertimePolicies.Service.Repository
     public class Repository<T> : IRepository<T> where T : BaseEntity
 
     {
-        private readonly ILogger<T> _logger;
+        
         private readonly ApplicationDbContext _context;
         private readonly DbSet<T> _entity;
         string errorMessage = string.Empty;
 
-        public Repository(ApplicationDbContext context, ILogger<T> logger)
+        public Repository(ApplicationDbContext context)
         {
             _context = context;
-            _logger = logger;
+            
             _entity = context.Set<T>();
         }
 

@@ -19,7 +19,7 @@ namespace OverTimePolicies.api.Controllers
     public class EmployeeController : BaseApiController<Employee, EmployeeServiceModel, EmployeeController>
     {
         private readonly IEmployeeService _Service;
-        public EmployeeController(IEmployeeService service,  ILogger<EmployeeController> logger = null) : base(service, logger)
+        public EmployeeController(IEmployeeService service) : base(service)
         {
             _Service = service;
         }

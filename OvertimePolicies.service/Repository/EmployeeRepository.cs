@@ -10,7 +10,7 @@ namespace OvertimePolicies.Service.Repository
     public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {
         private readonly DbSet<Employee> _entity;
-        public EmployeeRepository(ApplicationDbContext context, ILogger<Employee> logger) : base(context, logger)
+        public EmployeeRepository(ApplicationDbContext context) : base(context)
         {
             this._entity = context.Set<Employee>();
         }

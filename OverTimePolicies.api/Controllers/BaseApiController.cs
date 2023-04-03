@@ -19,7 +19,7 @@ namespace OverTimePolicies.api.Controllers
         where TResult : BaseServiceModel
     {
         private readonly IService<TInput, TResult> _Service;
-        public ILogger<TChild> _logger;
+        
 
 
         public int CurrentUserId
@@ -34,10 +34,10 @@ namespace OverTimePolicies.api.Controllers
 
 
 
-        public BaseApiController(IService<TInput, TResult> service, ILogger<TChild> logger = null)
+        public BaseApiController(IService<TInput, TResult> service)
         {
             _Service = service;
-            _logger = logger;
+       
 
         }
 

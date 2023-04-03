@@ -20,9 +20,14 @@ namespace OvertimePolicies.Service.Concrete
             _employeeRepository = employeeRepository;
 
         }
-        public List<EmployeeServiceModel> GetRange(string dateFrom,string dateTo)
+        
+        public List<EmployeeServiceModel> GetRange(string name,string family,string dateFrom,string dateTo)
         {
-          var list=  _employeeRepository.GetBy(p=>p.Date>= dateFrom. ConverToGregorianDate()&&p.Date<= dateTo.ConverToGregorianDate()).ToList();
+          var list=  _employeeRepository.GetBy(p=>
+          p.FirstName==name&& p.LastName==family &&
+          p.Date>= dateFrom. ConverToGregorianDate()&&
+          p.Date<= dateTo.ConverToGregorianDate())
+                .ToList();
 
             return list.Adapt<List<EmployeeServiceModel>>();
         }
@@ -32,7 +37,7 @@ namespace OvertimePolicies.Service.Concrete
 
             var overTimeCalc = OverTimeCalc(serviceModel);
             var finalSalery = serviceModel.BasicSalary + serviceModel.Allowance + serviceModel.Transportation + overTimeCalc;
-            serviceModel.FinalSalery = finalSalery;
+            serviceModel.FinalSalery =finalSalery- Convert.ToDecimal (0.1);
             serviceModel.Date = serviceModel.DateStr.ConverToGregorianDate();
             base.Insert(serviceModel, currentUserId);
         }
@@ -41,7 +46,7 @@ namespace OvertimePolicies.Service.Concrete
         {
             var overTimeCalc = OverTimeCalc(serviceModel);
             var finalSalery = serviceModel.BasicSalary + serviceModel.Allowance + serviceModel.Transportation + overTimeCalc;
-            serviceModel.FinalSalery = finalSalery;
+            serviceModel.FinalSalery = finalSalery - Convert.ToDecimal(0.1); 
             serviceModel.Date = serviceModel.DateStr.ConverToGregorianDate();
             base.Update(serviceModel, currentUserId);
         }
